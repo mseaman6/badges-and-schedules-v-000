@@ -1,22 +1,31 @@
+require 'pry'
+
 def badge_maker(name)
-  puts "Hello, my name is #{name}."
+  "Hello, my name is #{name}."
 end
 
 def batch_badge_creator(attendees)
+  batch_badges = []
   attendees.each do |name|
-    badge_maker(name)
+    batch_badges << badge_maker(name)
   end
+  batch_badges
 end
 
 def assign_rooms(attendees)
   assigned_rooms = []
   attendees.each_with_index do |name, index|
-    assigned_rooms << "Hello, #{name}! You'll be assigned to room #{index}!"
+    assigned_rooms << "Hello, #{name}! You'll be assigned to room #{index + 1}!"
   end
   assigned_rooms
 end
 
-def printer
-  batch_badge_creator(attendees)
-  assign_rooms
+def printer(attendees)
+  attendees.each do |name|
+    puts badge_maker(name)
+  end
+  assigned_rooms = assign_rooms(attendees)
+  assigned_rooms.each do |room_info|
+    puts room_info
+  end
 end
